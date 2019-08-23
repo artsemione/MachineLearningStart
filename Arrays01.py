@@ -4,6 +4,8 @@ Nearest Neighbor Classifier (CS231n)
 23 Aug 2019
 Author: CS231n
 
+Testando arquivo github
+
 """
 
 
