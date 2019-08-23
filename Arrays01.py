@@ -2,8 +2,7 @@
 Nearest Neighbor Classifier (CS231n)
 
 23 Aug 2019
-Author: Arthur Semione
-GitHub: @artsemione
+Author: CS231n
 
 """
 
