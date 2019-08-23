@@ -1,3 +1,13 @@
+"""
+Nearest Neighbor Classifier (CS231n)
+
+23 Aug 2019
+Author: Arthur Semione
+GitHub: @artsemione
+
+"""
+
+
 import numpy as np
 import os
 import pickle
