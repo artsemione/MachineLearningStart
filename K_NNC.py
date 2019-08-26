@@ -22,7 +22,7 @@ class NearestNeighbor(object):
         self.Ytr = y
 
     def predict(self, x):
-        """ Numero de imagens a serem testadas """
+        #num_test = x.shape[0]
         num_test = 50
         # lets make sure that the output type matches the input type (same dimension)
         Ypred = np.zeros(num_test, dtype=self.Ytr.dtype)
@@ -66,6 +66,19 @@ def load_CIFAR10(ROOT):
 Xtr, Ytr, Xte, Yte = load_CIFAR10('cifar-10-batches-py')
 Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3)  # Xtr_rows becomes 50000 x 3072
 Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3)  # Xte_rows becomes 10000 x 3072
+
+# assume we have Xtr_rows, Ytr, Xte_rows, Yte as before
+# recall Xtr_rows is 50,000 x 3072 matrix
+
+Xval_rows = Xtr_rows[:1000, :] # take first 1000 for validation
+Yval = Ytr[:1000]
+Xtr_rows = Xtr_rows[1000:, :] # keep last 49,000 for train
+Ytr = Ytr[1000:]
+
+# find hyperparameters that work best on the validation set
+
+validation_accuracies = []
+for k in [1, 3, 5, 10, 20, 50, 100]:
 
 nn = NearestNeighbor() # create a Nearest Neighbor classifier class
 nn.train(Xtr_rows, Ytr) # train the classifier on the training images and labels
@@ -134,13 +147,3 @@ print('accuracy: %f' % (np.mean(Yte_predict == Yte)))
              [75]
              [84]]
 '''
-""" np.mean():
-        >>> a = np.array([[1, 2], [3, 4]])
-        >>> np.mean(a)
-        2.5
-        >>> np.mean(a, axis=0)
-        array([2., 3.])
-        >>> np.mean(a, axis=1)
-        array([1.5, 3.5])
-
-"""
