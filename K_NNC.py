@@ -79,12 +79,12 @@ Ytr = Ytr[1000:]
 
 validation_accuracies = []
 for k in [1, 3, 5, 10, 20, 50, 100]:
+    nn = NearestNeighbor()  # create a Nearest Neighbor classifier class
+    nn.train(Xtr_rows, Ytr)  # train the classifier on the training images and labels
+    Yte_predict = nn.predict(Xte_rows)  # predict labels on the test images
+    # and now print the classification accuracy, which is the average number
+    # of examples that are correctly predicted (i.e. label matches)
 
-nn = NearestNeighbor() # create a Nearest Neighbor classifier class
-nn.train(Xtr_rows, Ytr) # train the classifier on the training images and labels
-Yte_predict = nn.predict(Xte_rows) # predict labels on the test images
-# and now print the classification accuracy, which is the average number
-# of examples that are correctly predicted (i.e. label matches)
 print('accuracy: %f' % (np.mean(Yte_predict == Yte)))
 
 ''' numpy.shape():
